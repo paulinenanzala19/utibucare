@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% block content %}
+<html>
+    <head>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+
+        <style>
+            #cont ul li{
+                text-decoration: none;
+                display: block;
+                border: 1px solid black;
+                height: 28em;
+                width: 18em;
+                padding: 1em;
+                margin-right: 40px;
+                font-size: 1.5em;
+                margin: 3em;
+                font-weight: bold;
+            }
+
+            #cont ul{
+                display: flex;
+                padding: 5em;
+                margin-left: 10%;
+            }
+            #cont{
+                background-image: url('https://media.istockphoto.com/id/1300036753/photo/falling-antibiotics-healthcare-background.jpg?s=612x612&w=0&k=20&c=oquxJiLqE33ePw2qML9UtKJgyYUqjkLFwxT84Pr-WPk=');
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+            .service{
+                text-align: center;
+            }
+            .button{
+                list-style: none;
+                margin-left: 45%;
+                margin-top: 2%;
+                margin-bottom: 10%;
+            }
+            .button a{
+                width: 100px;
+                padding: 10px;
+                font-size: 1.5em;
+            }
+            .img1{
+                margin-left: 50%; 
+                margin-top: -15%; 
+            }
+            .const{
+                margin-left: 2%;
+            }
+            .const p{
+                font-size: 2.5em;
+                margin-top: 10%;
+            }
+            .const h2{
+               text-align: center;
+               font-size: 3em;
+               font-weight: 500;
+               color: rgb(4, 96, 124);
+            }
+
+        </style>
+    </head>
+    <body>
+        <h1 class="service">Our Services</h1>
+        <div id="cont">
+            <ul>
+                <li>
+                    <i class="fas fa-prescription"></i>
+                    <h2>Prescription Management</h2>
+                    <p>Our prescription management system is designed to provide<br> a seamless and streamlined experience for managing medications.<br> Clients can upload and store their prescription on our platform,<br> making it easy to track and manage their medications.<br> Our system also allows clients to receive automatic<br> reminders when it’s time to refill their medications,<br> ensuring they never run out of their essential drugs.</p>
+                </li>
+                <li>
+                    <i class="fas fa-mobile-alt"></i>
+                    <h2>Mobile Ordering</h2>
+                    <p>Our mobile ordering system allows clients to remotely<br> order their medication, making it easy and convenient to access<br> the pharmaceutical products they need. Clients can browse<br> the catalog, select their desired medication, and have it<br> delivered to their doorstep or choose to pick it up from our facility.</p>
+                </li>
+                <li>
+                    <i class="fas fa-credit-card"></i>
+                    <h2>Contactless payment</h2>
+                    <p>Our contactless payment system provides a safe and<br> convenient way for clients to pay for their medication. Clients<br> can choose to pay immediately through our platform or opt to pay <br>later at the point of collection. Our system provides<br> a secure and seamless payment process, ensuring clients’ <br>sensitive information is protected at all times.</p>
+                </li>
+            </ul>
+        </div>
+        <div class="const">
+            <h2>Online Consultations</h2>
+            <p>Our team is made up of experienced<br> pharmacists and healthcare providers<br> dedicated to improving access to medication and healthcare<br> services through innovative technology solutions.</p>
+            <div class="img1">
+                <img src="https://img.freepik.com/free-vector/pharmacist-people-doing-their-job_23-2148549580.jpg?size=626&ext=jpg&ga=GA1.1.800537262.1711705015&semt=ais" alt="" width="400px" height="400px">
+
+            </div>
+            
+        </div>
+        <div class="button">
+            <button>
+                <a class='btn btn-default' href="{% url 'medicine' %}">Order Med</a>
+            </button>
+            
+        </div>
+        
+             
+
+        
+    </body>
+</html>
+{% endblock content%}
+    

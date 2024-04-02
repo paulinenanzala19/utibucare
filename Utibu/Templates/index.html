@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+{{block.super}}
+<section>
+    <style>
+        .main{
+            font-size: 4em;
+        }
+        .health{
+            font-size: 6.5em;
+            font-weight: bold;
+            
+        }
+        .line{
+            font-size: 1.7em;
+            font-weight: 400;
+        }
+        .button{
+            list-style: none;
+            margin-left: 45%;
+        }
+        .button a{
+            width: 100px;
+            padding: 10px;
+            font-size: 1.5em;
+        }
+        header{
+            background-image:url('https://st3.depositphotos.com/5433682/36352/v/380/depositphotos_363528616-stock-illustration-health-care-concept-with-blue.jpg');
+            background-repeat: no-repeat;
+            background-size:cover;
+        }
+        
+
+    </style>
+    <header>
+        <div style="text-align: center;">
+            <h3 class="main">Utibu Health</h3>
+            <h1 class="health">Your Health,Our <br>priority</h1>
+            <p class="line">Utibu Health is a leading medical and clinic facility that provides<br> cutting-edge healthcare services to our clients.We are <br>committed to ensuring that our clients receive world-class medical<br> care in a safe and supportive environment. Our digital<br> platform enables our patients to order their medication remotely<br> on their mobile devices and conveniently collect their <br>prescriptions at their leisure. Our contactless payment system also ensures that our<br> clients can pay for their services without physically touching<br> any payment devices. At Utibu Health, we prioritize your health above all else</p>
+        </div>
+        <div class="button">
+            <button>
+                <a class='btn btn-default' href="accounts/register">Get Started</a>
+            </button>
+        </div>
+        <!-- <div style="text-align: center;">
+            <button>Explore more</button>
+            <button>Get Started</button>
+        </div> -->
+    </header>
+</section>
+
+{% endblock %}

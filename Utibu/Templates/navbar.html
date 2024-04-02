@@ -1,0 +1,62 @@
+ <html>
+  <head>
+
+   
+    <style>
+      .navbar{
+        display: flex;
+        flex-direction: row;
+        
+      }
+      .navbar ul li{
+        list-style-type: none;
+        display: inline;
+        padding: 20px;
+      }
+      .navbar ul li a{
+        color: black;
+        font-size: large;
+      }
+      .navbar ul{
+         margin-left: 50%; 
+        margin-top: 20px;
+      }
+      #cart-total{
+        display: block;
+        text-align: center;
+        color: black;
+        font-size: 14px;
+      }
+    </style>
+
+  </head>
+  <body>
+    <nav class="navbar">
+      <p class="navbar-brand" id="brand" href=""><i class="fa-solid fa-code text-white"></i></p>
+      <ul>
+          <li>
+              <a class="home" href="{% url 'home' %}"><i class="fa fa-home" aria-hidden="true"></i></a>
+          </li>
+          <li>
+              <a href="{% url 'about' %}">About</a>
+          </li>
+          <li>
+              <a href="{% url 'service' %}">Services</a>
+          </li>
+          <li>
+              <a href="{% url 'medicine' %}">Medicine</a>
+          </li>
+          <li>
+            <a href="{% url 'cart' %}"><img src="https://media.istockphoto.com/id/1128229893/vector/shopping-cart-icon.jpg?s=612x612&w=0&k=20&c=EunmrZqRD5SXHNtqUBNkDl0zJGgq7QUjw2KXlbR6_Dg=" alt="" height="70px" width="70px"></a>
+            <!-- <p id="cart-total">{{cartMeds}}</p>  -->
+        
+          </li>
+          
+      </ul>
+  </nav>
+            
+    
+    
+  </body>
+
+</html> 
