@@ -1,0 +1,1 @@
+web: gunicorn utibuhealth_care.wsgi --log-file -
