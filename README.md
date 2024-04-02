@@ -19,11 +19,11 @@ Be able to view my ordered medicine from the cart
 Able to checkout my medicine, reduce the quantity
 Get a notification if its to be delivered or i make the payments
 
-Behaviour|	Input|	Output
-Display login form or sign up incase you dont have an account|	clicking the get started button |	Displays the registration form on clicking sign up
-Displays services offered	On log in | Button redirects you to order medicine | redirected to the medicine page.
-Click add to cart to add medicine| 	medicine will be added to cart | click checkout
-Redirects you to details of shipping address| add required details in case of shipping| redirect to make payment
+Behaviour|	Input |	Output|
+Display login form or sign up incase you dont have an account |	clicking the get started button |	Displays the registration form on clicking sign up
+Displays services offered	On log in  | Button redirects you to order medicine | redirected to the medicine page.
+Click add to cart to add medicine | 	medicine will be added to cart | click checkout
+Redirects you to details of shipping address | add required details in case of shipping| redirect to make payment
 ## SetUp / Installation Requirements
 Prerequisites
 python
