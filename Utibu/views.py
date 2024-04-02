@@ -13,9 +13,10 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
 # Create your views here.
-def Utibu(request):
-  template = loader.get_template('index.html')
-  return HttpResponse(template.render())
+def home(request):
+  context={}
+  
+  return render(request, 'index.html', context )
 
 def registerPage(request):
    form= RegistrationForm()

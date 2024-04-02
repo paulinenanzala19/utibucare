@@ -12,7 +12,7 @@ router.register('users', views.UserViewSet)
 
 
 urlpatterns=[
-    path('',views.Utibu, name='home'),
+    path('',views.home, name='home'),
     path('api/', include(router.urls)),
     path('accounts/register', views.registerPage, name="register"),
     path('accounts/login', views.loginPage, name="login"),
