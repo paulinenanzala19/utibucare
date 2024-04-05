@@ -42,15 +42,17 @@
       }
       var csrftoken = getToken('csrftoken');
     </script>
+
+<script type="text/javascript" src="{% static 'js/cart.js' '%}"></script>
   {% endblock %}
  
 
 </head>
 <body>
     {% include "navbar.html" %}
-    {% block content %} {% endblock %}
+    {% block content%} {% endblock %}
     
-    <script type="text/javascript" src="/utibucare/utibuhealth_care/static/js/cart.js"></script>
-
+  
+  
 </body>
 </html>
