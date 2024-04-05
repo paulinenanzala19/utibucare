@@ -51,6 +51,11 @@
 <body>
     {% include "navbar.html" %}
     {% block content%} {% endblock %}
+    {% load static%}
+
+    <script type="text/javascript" src="{% static 'js/cart.js' '%}"></script>
+
+    
     
   
   
