@@ -6,7 +6,7 @@ var updateBtns=document.getElementsByClassName('update-cart')
             console.log('medicineId:', medicineId, 'action:',action)
             console.log('USER:', user)
             if (user == 'AnonymousUser'){
-                console.log('User is not authenticated')
+               addCookieItem(medicineId, action)
             }
             else{
                 updateUserOrder(medicineId, action)
@@ -16,6 +16,28 @@ var updateBtns=document.getElementsByClassName('update-cart')
         })
 
     }
+
+function addCookieItem(medicineId, action){
+    console.log('Not logged In')
+
+    if (action =='add'){
+        if (cart[medicineId]== undefined){
+            cart[medicineId]={'quantity':1}
+        }else{
+            cart[medicineId]['quantity'] += 1
+        }
+    }
+
+    if (action == 'remove'){
+        cart[medicineId]['quantity'] -= 1
+        if (cart[medicineId]['quantity'] <= 0){
+            console.log('Remove Medicine')
+            delete cart[medicineId]
+        }
+    }
+    console.log('Cart:', cart)
+    document.cookie='cart=' + JSON.stringify(cart) + ";domain;=path=/"
+}
 
 function updateUserOrder(medicineId, action){
     console.log('User is authenticated, sending data....')

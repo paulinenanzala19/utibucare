@@ -6,6 +6,7 @@ from rest_framework import viewsets
 from django.template import loader
 from .forms import *
 from .models import *
+from .utils import cookieCart,cartData,guestOrder
 import datetime
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate,login, logout
@@ -50,51 +51,33 @@ def service(request):
    return render(request, 'services.html', {})
 
 def medicine(request):
-   if request.user.is_authenticated:
-      patient = request.user.patient    
-      order, created = Order.objects.get_or_create(patient=patient, complete=False)
-      meds = order.ordermed_set.all
-      cartMeds=order.get_cart_meds
-
-   else:
-      meds=[]
-      order ={'get_cart_meds':0, 'get_cart_total':0, 'shipping': False}
-      cartMeds=['get_cart_meds']
+   data = cartData(request)
+   cartMeds=data['cartMeds']
+   
+      
 
    medicines= Medicine.objects.all()
    context={'medicines': medicines, 'cartMeds': cartMeds}
    return render (request, 'medicine.html', context)
 
 def cart(request):
+   data = cartData(request)
+   cartMeds=data['cartMeds']
+   order=data['order']
+   meds=data['meds']
 
-   if request.user.is_authenticated:
-      patient = request.user.patient    
-      order, created = Order.objects.get_or_create(patient=patient, complete=False)
-      meds = order.ordermed_set.all()
-      cartMeds=order.get_cart_meds
-
-
-   else:
-      meds=[]
-      order ={'get_cart_meds':0, 'get_cart_total':0, 'shipping': False }
-      cartMeds=['get_cart_meds']
-
+  
  
    context={'meds': meds, 'order':order, 'cartMeds':cartMeds}
    return render (request, 'cart.html', context)
 
+
 def checkout(request):
-   if request.user.is_authenticated:
-      patient = request.user.patient    
-      order, created = Order.objects.get_or_create(patient=patient, complete=False)
-      meds = order.ordermed_set.all()
-      cartMeds=order.get_cart_meds
-
-
-   else:
-      meds=[]
-      order ={'get_cart_meds':0, 'get_cart_total':0, 'shipping': False}
-      cartMeds=['get_cart_meds']
+   
+   data = cartData(request)
+   cartMeds=data['cartMeds']
+   order=data['order']
+   meds=data['meds']
 
  
    context={'meds': meds, 'order':order, 'cartMeds': cartMeds}
@@ -129,14 +112,18 @@ def processOrder(request):
    if request.user.is_authenticated:
       patient=request.user.patient
       order, created = Order.objects.get_or_create(patient=patient, complete=False)
-      total = float(data['form']['total'])
-      order.transaction_id=transaction_id
+      
 
-      if total == order.get_cart_total:
+   else:
+      patient, order=guestOrder(request, data)
+   total = float(data['form']['total'])
+   order.transaction_id=transaction_id
+
+   if total == order.get_cart_total:
          order.complete = True
-      order.save()
+   order.save()
 
-      if order.shipping == True:
+   if order.shipping == True:
          ShippingAddress.objects.create(
             patient=patient,
             order=order,
@@ -147,8 +134,7 @@ def processOrder(request):
          )
 
 
-   else:
-      print('User is not logged in')
+
    return JsonResponse('payment submitted', safe=False)
 
 class UserViewSet(viewsets.ModelViewSet):
