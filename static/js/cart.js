@@ -6,7 +6,7 @@ var updateBtns=document.getElementsByClassName('update-cart')
             console.log('medicineId:', medicineId, 'action:',action)
             console.log('USER:', user)
             if (user == 'AnonymousUser'){
-               addCookieItem(medicineId, action)
+               //addCookieItem(medicineId, action)
             }
             else{
                 updateUserOrder(medicineId, action)
