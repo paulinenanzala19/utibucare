@@ -6,7 +6,7 @@ var updateBtns=document.getElementsByClassName('update-cart')
             console.log('medicineId:', medicineId, 'action:',action)
             console.log('USER:', user)
             if (user == 'AnonymousUser'){
-               //addCookieItem(medicineId, action)
+               addCookieMed(medicineId, action)
             }
             else{
                 updateUserOrder(medicineId, action)
@@ -17,7 +17,7 @@ var updateBtns=document.getElementsByClassName('update-cart')
 
     }
 
-function addCookieItem(medicineId, action){
+function addCookieMed(medicineId, action){
     console.log('Not logged In')
 
     if (action =='add'){
