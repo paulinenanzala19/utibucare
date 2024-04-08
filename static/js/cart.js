@@ -5,7 +5,7 @@ var updateBtns=document.getElementsByClassName('update-cart')
             var action = this.dataset.action
             console.log('medicineId:', medicineId, 'action:',action)
             console.log('USER:', user)
-            if (user == 'AnonymousUser'){
+            if (user == 'AnonymousUser1'){
                addCookieMed(medicineId, action)
             }
             else{
