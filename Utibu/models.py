@@ -29,7 +29,7 @@ class Medicine(models.Model):
         return url
     
 class Order(models.Model):
-    patient=models.ForeignKey(Patient, on_delete=models.SET_NULL, null=True, blank=True)
+    patient=models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     date_ordered=models.DateTimeField(auto_now_add=True)
     complete=models.BooleanField(default=False, null=True, blank=False)
     transaction_id=models.CharField(max_length=100 , null=True)

@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from django.http  import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse
 import json
 from django.contrib import messages
 from rest_framework import viewsets
@@ -12,6 +12,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate,login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from  django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def home(request):
@@ -41,6 +42,7 @@ def loginPage(request):
 
       user = authenticate(request, username=username, password=password)
       if user is not None:
+         login(request, user)
          return redirect('service')
    context = {}
    return render(request, "registration/login.html", context)
@@ -51,13 +53,13 @@ def service(request):
    return render(request, 'services.html', {})
 
 def medicine(request):
-   data = cartData(request)
-   cartMeds=data['cartMeds']
+   # data = cartData(request)
+   # cartMeds=data['cartMeds']
    
       
 
    medicines= Medicine.objects.all()
-   context={'medicines': medicines, 'cartMeds': cartMeds}
+   context={'medicines': medicines} #'cartMeds': cartMeds}
    return render (request, 'medicine.html', context)
 
 def cart(request):
@@ -83,17 +85,20 @@ def checkout(request):
    context={'meds': meds, 'order':order, 'cartMeds': cartMeds}
    return render (request, 'checkout.html', context)
 
+@login_required
 def updateMed(request):
    data = json.loads(request.body)
+   print(request.body)
    medicineId = data['medicineId']  
-   action = data['action']   
+   action = data['action']
    print('Action:', action)  
    print('Medicine:', medicineId)
 
-   patient = request.user.patient
+   patient = request.user
    medicine=Medicine.objects.get(id=medicineId) 
    order, created = Order.objects.get_or_create(patient=patient, complete=False)
-   orderMed, created=OrderMed.objects.get_or_create(order=order, medicine=medicine)   
+   orderMed, created=OrderMed.objects.get_or_create(order=order, medicine=medicine) 
+     
    if action == 'add':
       orderMed.quantity=(orderMed.quantity + 1)  
    elif action == 'remove':
@@ -102,6 +107,7 @@ def updateMed(request):
    orderMed.save()
    if orderMed.quantity <= 0:
       orderMed.delete()
+
 
    return JsonResponse('medicine was added', safe=False)
 

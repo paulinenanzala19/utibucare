@@ -5,7 +5,7 @@ var updateBtns=document.getElementsByClassName('update-cart')
             var action = this.dataset.action
             console.log('medicineId:', medicineId, 'action:',action)
             console.log('USER:', user)
-            if (user == 'AnonymousUser1'){
+            if (user === 'AnonymousUser'){
                addCookieMed(medicineId, action)
             }
             else{
@@ -41,8 +41,10 @@ function addCookieMed(medicineId, action){
 
 function updateUserOrder(medicineId, action){
     console.log('User is authenticated, sending data....')
-    var url='/update_med/'
-    fetch (url,{
+
+   var url='update_med/'
+
+    fetch(url, {
         method: 'POST',
         headers:{
             'Content-Type': 'application/json',
@@ -55,7 +57,7 @@ function updateUserOrder(medicineId, action){
         return response.json();
     })
     .then((data) => {
-        console.log('Data:', data);
+        console.log('data:', data);
         location.reload()
     })
 }
